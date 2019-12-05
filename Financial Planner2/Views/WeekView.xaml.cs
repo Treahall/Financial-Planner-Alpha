@@ -11,17 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Financial_Planner2.ViewModels;
 
 namespace Financial_Planner2.Views
 {
     /// <summary>
-    /// Interaction logic for MonthView.xaml
+    /// Interaction logic for WeekView.xaml
     /// </summary>
-    public partial class MonthView : Window
+    public partial class WeekView : Window
     {
-        DateTime TestDate ;
-        public MonthView()
+        public WeekView()
         {
             InitializeComponent();
         }
@@ -30,11 +28,5 @@ namespace Financial_Planner2.Views
         {
             this.Close();
         }
-
-        private void Stat_Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
     }
 }

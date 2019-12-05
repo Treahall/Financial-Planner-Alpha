@@ -35,6 +35,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+
+
         <materialDesign:ColorZone Grid.Row="0" Grid.ColumnSpan="7" Mode="PrimaryDark" Padding="4">
             <DockPanel>
                 <materialDesign:PopupBox
@@ -43,15 +45,37 @@
                     <MenuItem Name="Exit_Button" Header="Exit" Click="Exit_Button_Click"/>
                 </materialDesign:PopupBox>
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                    <ToggleButton VerticalAlignment="Top" Margin="0 0 0 0"
-                                  Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock Text="{Binding MonthAndYear}" Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+
+                    <TextBlock Text="{Binding CalendarHeader}" Style="{StaticResource MaterialDesignHeadlineTextBlock}"
                                VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="16 0 0 0"/>
+
+                    <Button Margin="16 0 0 0" Name="Stat_Button"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                            ToolTip="MaterialDesignFlatMidButton"
+                            Click="Stat_Button_Click">
+                            Statistics
+                    </Button>
+                    
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0" HorizontalAlignment="Right">
+                    <DatePicker Margin="16 0 0 0" Name="Date_Picker"
+                                Width="100" HorizontalAlignment="Right"
+                                materialDesign:HintAssist.Hint="Pick Date"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                    <Button Margin="16 0 0 0" HorizontalAlignment="Right"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                            ToolTip="MaterialDesignFlatMidButton"
+                            Command="{Binding UpdateInformation}"
+                            CommandParameter="{Binding ElementName=Date_Picker}">
+                        Go To Date
+                    </Button>
+                </StackPanel>
+                
             </DockPanel>
         </materialDesign:ColorZone>
 
-        <ItemsControl ItemsSource="{Binding DayOfWeek}" Grid.Row="1" Grid.ColumnSpan="7">
+        <ItemsControl ItemsSource="{Binding WeekDayTitles}" Grid.Row="1" Grid.ColumnSpan="7">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="7"/>
@@ -60,8 +84,8 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <materialDesign:ColorZone Mode="PrimaryDark" Padding="7">
-                        <TextBlock  Text="{Binding StringFormat=DayOfWeek}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-                                TextAlignment="Right" Margin="0 0 6 0"/>
+                        <TextBlock Text="{Binding StringFormat=WeekDayTitles}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                   TextAlignment="Right" Margin="0 0 6 0"/>
 
                     </materialDesign:ColorZone>
                     
@@ -69,8 +93,8 @@
             </ItemsControl.ItemTemplate>
             
         </ItemsControl>
-        
-        <ItemsControl ItemsSource="{Binding Month}" Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="7">
+
+        <ItemsControl ItemsSource="{Binding CalendarDates}" Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="7">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="7" Rows="6"/>
